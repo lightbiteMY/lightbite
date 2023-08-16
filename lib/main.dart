@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'page/home.dart';
+import 'package:lightbite/page/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,7 +8,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  final String titleText = 'LightBite';
+  final String titleText = 'LightBite2';
 
   // This widget is the root of your application.
   @override
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
       ),
-      home: MyHomePage(title: titleText),
+      home: HomePage(title: titleText),
     );
   }
 }
