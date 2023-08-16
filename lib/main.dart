@@ -8,7 +8,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  final String titleText = 'LightBite2';
+  final String titleText = 'LightBite';
 
   // This widget is the root of your application.
   @override
