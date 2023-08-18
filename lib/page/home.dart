@@ -11,19 +11,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentPageIndex = 0;
-
-  void onDestinationSelected(int index) {
-    setState(() {
-      currentPageIndex = index;
-    });
-    debugPrint('$index');
-  }
-
   Widget build(BuildContext context) {
     return HomeTemplate(
-        title: widget.title,
-        currentPageIndex: currentPageIndex,
-        onDestinationSelected: onDestinationSelected);
+      title: widget.title,
+    );
   }
 }
