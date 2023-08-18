@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lightbite/template/home.dart';
+import 'package:lightbite/template/home_template.dart';
 import 'package:flutter/foundation.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
     return HomeTemplate(
       title: widget.title,
