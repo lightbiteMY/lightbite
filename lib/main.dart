@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lightbite/navigation/bottomNavBar.dart';
-import 'package:lightbite/page/home.dart';
+import 'package:lightbite/navigation/bottom_navbar.dart';
+import 'package:lightbite/page/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
       ),
-      home: BottomNavBar(),
+      home: const BottomNavBar(),
       routes: {
         '/home': (context) => HomePage(title: titleText),
         // '/notification': (context) =>
