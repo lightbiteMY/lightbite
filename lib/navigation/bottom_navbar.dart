@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lightbite/page/home_page.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  final String title;
+  const BottomNavBar({super.key, required this.title});
 
   @override
   BottomNavBarState createState() => BottomNavBarState();
@@ -23,10 +25,22 @@ class BottomNavBarState extends State<BottomNavBar> {
       NavigationDestination(icon: Icon(Icons.mail), label: 'Notification'),
       NavigationDestination(icon: Icon(Icons.people), label: 'Profile')
     ];
-    return NavigationBar(
-      onDestinationSelected: _onItemTapped,
-      destinations: destinations,
-      selectedIndex: currentPageIndex,
+    return Scaffold(
+      bottomNavigationBar: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        onDestinationSelected: _onItemTapped,
+        destinations: destinations,
+        selectedIndex: currentPageIndex,
+      ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: <Widget>[
+        HomePage(),
+        HomePage(),
+        HomePage(),
+      ][currentPageIndex],
     );
   }
 }
