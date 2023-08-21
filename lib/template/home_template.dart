@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:lightbite/page/home_page.dart';
 
 class HomeTemplate extends StatelessWidget {
   const HomeTemplate({super.key});
@@ -6,6 +9,17 @@ class HomeTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
+        leading: Container(
+          child: IconButton(
+            icon: const CircleAvatar(child: Text('A')),
+            onPressed: null,
+          ),
+        ),
+        actions: [],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
