@@ -32,15 +32,16 @@ class BottomNavBarState extends State<BottomNavBar> {
         destinations: destinations,
         selectedIndex: currentPageIndex,
       ),
+      backgroundColor: Color.fromRGBO(230, 230, 230, 1),
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: <Widget>[
-        HomePage(),
-        HomePage(),
-        HomePage(),
-      ][currentPageIndex],
+      // body: <Widget>[
+      // HomePage(),
+      // HomePage(),
+      // HomePage(),
+      // ][currentPageIndex],
     );
   }
 }
