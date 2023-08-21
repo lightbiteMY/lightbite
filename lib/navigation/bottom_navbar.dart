@@ -31,20 +31,15 @@ class BottomNavBarState extends State<BottomNavBar> {
         onDestinationSelected: _onItemTapped,
         destinations: destinations,
         selectedIndex: currentPageIndex,
-        backgroundColor: Color.fromRGBO(230, 230, 230, 1),
-        surfaceTintColor: Color.fromRGBO(230, 230, 230, 1),
+        backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
+        surfaceTintColor: const Color.fromRGBO(230, 230, 230, 1),
       ),
-      backgroundColor: Color.fromRGBO(230, 230, 230, 1),
-      appBar: AppBar(
-        // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        backgroundColor: Color.fromRGBO(230, 230, 230, 1),
-        title: Text(widget.title),
-      ),
-      // body: <Widget>[
-      // HomePage(),
-      // HomePage(),
-      // HomePage(),
-      // ][currentPageIndex],
+      backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
+      body: <Widget>[
+        const HomePage(),
+        const HomePage(),
+        const HomePage(),
+      ][currentPageIndex],
     );
   }
 }
