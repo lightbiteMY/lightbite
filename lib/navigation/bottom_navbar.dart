@@ -23,7 +23,7 @@ class BottomNavBarState extends State<BottomNavBar> {
     const List<NavigationDestination> destinations = [
       NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
       NavigationDestination(icon: Icon(Icons.mail), label: 'Notification'),
-      NavigationDestination(icon: Icon(Icons.people), label: 'Profile')
+      NavigationDestination(icon: Icon(Icons.person), label: 'Profile')
     ];
     return Scaffold(
       bottomNavigationBar: NavigationBar(
@@ -31,10 +31,13 @@ class BottomNavBarState extends State<BottomNavBar> {
         onDestinationSelected: _onItemTapped,
         destinations: destinations,
         selectedIndex: currentPageIndex,
+        backgroundColor: Color.fromRGBO(230, 230, 230, 1),
+        surfaceTintColor: Color.fromRGBO(230, 230, 230, 1),
       ),
       backgroundColor: Color.fromRGBO(230, 230, 230, 1),
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Color.fromRGBO(230, 230, 230, 1),
         title: Text(widget.title),
       ),
       // body: <Widget>[
