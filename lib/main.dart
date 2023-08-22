@@ -19,8 +19,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
       ),
-      home: BottomNavBar(
-        title: title,
+      home: SafeArea(
+        child: BottomNavBar(
+          title: title,
+        ),
       ),
       debugShowCheckedModeBanner: true,
     );
