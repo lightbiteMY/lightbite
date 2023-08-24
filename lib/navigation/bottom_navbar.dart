@@ -20,10 +20,15 @@ class BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    const List<NavigationDestination> destinations = [
-      NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-      NavigationDestination(icon: Icon(Icons.mail), label: 'Notification'),
-      NavigationDestination(icon: Icon(Icons.person), label: 'Profile')
+    List<NavigationDestination> destinations = [
+      const NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+      NavigationDestination(
+          icon: Badge.count(
+            count: 10,
+            child: const Icon(Icons.mail),
+          ),
+          label: 'Notification'),
+      const NavigationDestination(icon: Icon(Icons.person), label: 'Profile')
     ];
     return Scaffold(
       bottomNavigationBar: NavigationBar(
