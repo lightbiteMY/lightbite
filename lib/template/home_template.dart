@@ -6,9 +6,21 @@ class HomeTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
-      body: Container(
-          margin: const EdgeInsets.all(10), decoration: const BoxDecoration()),
-    );
+        backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              pinned: true,
+              snap: false,
+              floating: false,
+              expandedHeight: 100,
+            ),
+            SliverList(delegate: SliverChildBuilderDelegate((context, index) {
+              return Container(
+                child: Placeholder(),
+              )
+            },))
+          ],
+        ));
   }
 }
