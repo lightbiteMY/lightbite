@@ -9,17 +9,33 @@ class HomeTemplate extends StatelessWidget {
         backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
         body: CustomScrollView(
           slivers: [
-            SliverAppBar(
+            const SliverAppBar(
               pinned: true,
               snap: false,
               floating: false,
               expandedHeight: 100,
+              title: Text(
+                'XX, JLN KAJANG 1, TAMAN ABC, 43000 KAJANG, SELANGOR',
+                style: TextStyle(fontSize: 10, color: Colors.black),
+              ),
+              leading: IconButton(onPressed: null, icon: Icon(Icons.menu)),
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                expandedTitleScale: 1.0,
+                title: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Search",
+                    suffixIcon: Icon(Icons.search),
+                  ),
+                ),
+              ),
             ),
-            SliverList(delegate: SliverChildBuilderDelegate((context, index) {
-              return Container(
-                child: Placeholder(),
-              )
-            },))
+            SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+              return const ListTile(
+                  leading: CircleAvatar(child: Icon(Icons.person)),
+                  title: Text('ABC'));
+            }, childCount: 20)),
           ],
         ));
   }
