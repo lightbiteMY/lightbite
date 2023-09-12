@@ -36,10 +36,10 @@ class BottomNavBarState extends State<BottomNavBar> {
         onDestinationSelected: _onItemTapped,
         destinations: destinations,
         selectedIndex: currentPageIndex,
-        backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
-        surfaceTintColor: const Color.fromRGBO(230, 230, 230, 1),
+        // backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
+        // surfaceTintColor: const Color.fromRGBO(230, 230, 230, 1),
       ),
-      backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
+      // backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
       body: <Widget>[
         const HomePage(),
         const HomePage(),
