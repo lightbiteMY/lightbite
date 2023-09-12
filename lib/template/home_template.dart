@@ -4,13 +4,16 @@ import 'package:lightbite/data/restaurant.dart';
 class HomeTemplate extends StatelessWidget {
   final String address;
   final List<Restaurant> restaurants;
-  const HomeTemplate(
-      {super.key, required this.address, required this.restaurants});
+  const HomeTemplate({
+    super.key,
+    required this.address,
+    required this.restaurants,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
+      // backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -18,9 +21,35 @@ class HomeTemplate extends StatelessWidget {
               snap: false,
               floating: false,
               expandedHeight: 120,
-              title: Text(
-                address,
-                style: const TextStyle(fontSize: 10, color: Colors.black),
+              title: InkWell(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container();
+                    },
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SelectionContainer.disabled(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          address,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 4,
+                          style: const TextStyle(
+                              fontSize: 10, color: Colors.black),
+                        ),
+                        const Icon(Icons.edit_location_alt_outlined)
+                      ],
+                    ),
+                  ),
+                ),
               ),
               leading:
                   const IconButton(onPressed: null, icon: Icon(Icons.menu)),
@@ -29,18 +58,18 @@ class HomeTemplate extends StatelessWidget {
                 return FlexibleSpaceBar(
                   centerTitle: true,
                   expandedTitleScale: 1.0,
-                  title: Visibility(
-                    visible: (constraints.maxHeight < 100) ? false : true,
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: SearchBar(
-                        padding: MaterialStatePropertyAll(
-                          EdgeInsets.symmetric(horizontal: 10.0),
-                        ),
-                        leading: Icon(Icons.search),
-                      ),
-                    ),
-                  ),
+                  // title: Visibility(
+                  //   visible: (constraints.maxHeight < 100) ? false : true,
+                  //   child: const Padding(
+                  //     padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  //     child: SearchBar(
+                  //       padding: MaterialStatePropertyAll(
+                  //         EdgeInsets.symmetric(horizontal: 10.0),
+                  //       ),
+                  //       leading: Icon(Icons.search),
+                  //     ),
+                  //   ),
+                  // ),
                 );
               })),
           const SliverToBoxAdapter(
