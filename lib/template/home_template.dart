@@ -9,27 +9,33 @@ class HomeTemplate extends StatelessWidget {
         backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
         body: CustomScrollView(
           slivers: [
-            const SliverAppBar(
-              pinned: true,
-              snap: false,
-              floating: false,
-              expandedHeight: 100,
-              title: Text(
-                'XX, JLN KAJANG 1, TAMAN ABC, 43000 KAJANG, SELANGOR',
-                style: TextStyle(fontSize: 10, color: Colors.black),
-              ),
-              leading: IconButton(onPressed: null, icon: Icon(Icons.menu)),
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                expandedTitleScale: 1.0,
-                title: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Search",
-                    suffixIcon: Icon(Icons.search),
-                  ),
+            SliverAppBar(
+                pinned: true,
+                snap: false,
+                floating: false,
+                expandedHeight: 100,
+                title: const Text(
+                  'XX, JLN KAJANG 1, TAMAN ABC, 43000 KAJANG, SELANGOR',
+                  style: TextStyle(fontSize: 10, color: Colors.black),
                 ),
-              ),
-            ),
+                leading:
+                    const IconButton(onPressed: null, icon: Icon(Icons.menu)),
+                flexibleSpace: LayoutBuilder(builder:
+                    (BuildContext context, BoxConstraints constraints) {
+                  return FlexibleSpaceBar(
+                    centerTitle: true,
+                    expandedTitleScale: 1.0,
+                    title: Visibility(
+                      visible: (constraints.maxHeight < 100) ? false : true,
+                      child: const TextField(
+                        decoration: InputDecoration(
+                          hintText: "Search",
+                          suffixIcon: Icon(Icons.search),
+                        ),
+                      ),
+                    ),
+                  );
+                })),
             SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
               return const ListTile(
