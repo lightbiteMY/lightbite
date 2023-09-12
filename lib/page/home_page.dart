@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // dummy hardcoded
-  String address = 'XX, JLN KAJANG 123, TAMAN ABC, 43000 KAJANG, SELANGOR.';
+  String address = 'Press to set your address';
   List<Restaurant> restaurants = List.generate(
     20,
     (index) => Restaurant(
@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> {
         ['Chinese', 'FastFood', 'Healthy'],
         'https://sdsgroups.com/wp-content/uploads/2021/11/cropped-Asset-3-e1637812026983.png'),
   );
-
   // remove until here
   @override
   Widget build(BuildContext context) {
