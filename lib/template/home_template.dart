@@ -1,48 +1,100 @@
 import 'package:flutter/material.dart';
+import 'package:lightbite/data/restaurant.dart';
 
 class HomeTemplate extends StatelessWidget {
-  const HomeTemplate({super.key});
+  final String address;
+  final List<Restaurant> restaurants;
+  const HomeTemplate(
+      {super.key, required this.address, required this.restaurants});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-                pinned: true,
-                snap: false,
-                floating: false,
-                expandedHeight: 100,
-                title: const Text(
-                  'XX, JLN KAJANG 1, TAMAN ABC, 43000 KAJANG, SELANGOR',
-                  style: TextStyle(fontSize: 10, color: Colors.black),
-                ),
-                leading:
-                    const IconButton(onPressed: null, icon: Icon(Icons.menu)),
-                flexibleSpace: LayoutBuilder(builder:
-                    (BuildContext context, BoxConstraints constraints) {
-                  return FlexibleSpaceBar(
-                    centerTitle: true,
-                    expandedTitleScale: 1.0,
-                    title: Visibility(
-                      visible: (constraints.maxHeight < 100) ? false : true,
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          hintText: "Search",
-                          suffixIcon: Icon(Icons.search),
+      backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+              pinned: true,
+              snap: false,
+              floating: false,
+              expandedHeight: 120,
+              title: Text(
+                address,
+                style: const TextStyle(fontSize: 10, color: Colors.black),
+              ),
+              leading:
+                  const IconButton(onPressed: null, icon: Icon(Icons.menu)),
+              flexibleSpace: LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                return FlexibleSpaceBar(
+                  centerTitle: true,
+                  expandedTitleScale: 1.0,
+                  title: Visibility(
+                    visible: (constraints.maxHeight < 100) ? false : true,
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: SearchBar(
+                        padding: MaterialStatePropertyAll(
+                          EdgeInsets.symmetric(horizontal: 10.0),
                         ),
+                        leading: Icon(Icons.search),
+                      ),
+                    ),
+                  ),
+                );
+              })),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Free Delivery Available',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              height: 100.0,
+              margin: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: restaurants.length,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    width: 180.0,
+                    child: Card(
+                      child: SizedBox(
+                        width: 180.0,
+                        height: 100,
+                        child: Image.network(restaurants[index].imageUrl),
                       ),
                     ),
                   );
-                })),
-            SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-              return const ListTile(
-                  leading: CircleAvatar(child: Icon(Icons.person)),
-                  title: Text('ABC'));
-            }, childCount: 20)),
-          ],
-        ));
+                },
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Exclusive Partners',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return ListTile(
+                leading: CircleAvatar(
+                  child: Image.network(restaurants[index].imageUrl),
+                ),
+                title: Text(restaurants[index].name),
+              );
+            }, childCount: restaurants.length),
+          ),
+        ],
+      ),
+    );
   }
 }
