@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lightbite/data/restaurant.dart';
+import 'package:weather_open_meteo_client/weather_open_meteo_client.dart';
 
 class HomeTemplate extends StatelessWidget {
   final String address;
@@ -55,9 +56,11 @@ class HomeTemplate extends StatelessWidget {
                   const IconButton(onPressed: null, icon: Icon(Icons.menu)),
               flexibleSpace: LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
-                return FlexibleSpaceBar(
+                return const FlexibleSpaceBar(
                   centerTitle: true,
                   expandedTitleScale: 1.0,
+                  // to add a weather widget here
+
                   // title: Visibility(
                   //   visible: (constraints.maxHeight < 100) ? false : true,
                   //   child: const Padding(
