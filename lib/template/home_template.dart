@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lightbite/data/restaurant.dart';
-import 'package:weather_open_meteo_client/weather_open_meteo_client.dart';
 
 class HomeTemplate extends StatelessWidget {
   final String address;
