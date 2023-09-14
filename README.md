@@ -1,16 +1,11 @@
-# lightbite
+# Lightbite
 
-A new Flutter project.
+Your light meal companion in Malaysia.
+
+## Purpose
+
+We are here to help the local in Malaysia to get their light meal easier.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is a mobile application written in Flutter.
