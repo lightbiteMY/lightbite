@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lightbite/data/address.dart';
 import 'package:lightbite/data/restaurant.dart';
 import 'package:lightbite/template/home_template.dart';
+import 'package:weather_open_meteo_client/weather_open_meteo_client.dart';
+
+import 'dart:developer' as developer;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,6 +26,14 @@ class _HomePageState extends State<HomePage> {
         'https://sdsgroups.com/wp-content/uploads/2021/11/cropped-Asset-3-e1637812026983.png'),
   );
   // remove until here
+
+  void _incrementCounter() async {
+    OpenMeteoApi weather = OpenMeteoApi();
+    Weather tempWether = await weather.getWeatherByCityName('Kuala Lumpur');
+    developer.log(tempWether.toString(), name: "debug");
+    // setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     address =
@@ -38,6 +49,7 @@ class _HomePageState extends State<HomePage> {
     //   'SELANGOR',
     //   (x: 10.0, y: 20.0),
     // );
+    _incrementCounter();
     return HomeTemplate(
       address: address.getFullAddress ?? defaultInstruction,
       restaurants: restaurants,
