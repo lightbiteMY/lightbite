@@ -1,5 +1,5 @@
 // currently no plan to use
-const weather_code = {
+const weatherCode = {
   0: 'Clear Sky',
   1: 'Mainly Clear',
   2: 'Partly Cloudy',
