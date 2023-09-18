@@ -16,6 +16,7 @@ class RestaurantCard extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
@@ -28,10 +29,29 @@ class RestaurantCard extends StatelessWidget {
                 child: Image.network(restaurant.imageUrl),
               ),
             ),
-            Text(
-              restaurant.name,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                restaurant.name,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  children: restaurant.tags
+                      .map(
+                        (tag) => Chip(
+                          label: Text(
+                            tag,
+                            style: const TextStyle(
+                              fontSize: 9,
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                )),
           ],
         ),
       ),
