@@ -21,11 +21,11 @@ class RestaurantCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Container(
-                constraints: const BoxConstraints(
-                  maxHeight: 120,
-                  maxWidth: 300,
-                ),
-                alignment: Alignment.center,
+                width: 50,
+                // constraints: const BoxConstraints(
+                //   maxHeight: 80,
+                //   maxWidth: 200,
+                // ),
                 child: Image.network(restaurant.imageUrl),
               ),
             ),
@@ -37,21 +37,22 @@ class RestaurantCard extends StatelessWidget {
               ),
             ),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  children: restaurant.tags
-                      .map(
-                        (tag) => Chip(
-                          label: Text(
-                            tag,
-                            style: const TextStyle(
-                              fontSize: 9,
-                            ),
-                          ),
+              padding: const EdgeInsets.all(10.0),
+              child: Wrap(
+                spacing: 5.0,
+                runSpacing: 0.0,
+                children: restaurant.tags
+                    .map(
+                      (tag) => Text(
+                        tag,
+                        style: const TextStyle(
+                          fontSize: 9,
                         ),
-                      )
-                      .toList(),
-                )),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
           ],
         ),
       ),
