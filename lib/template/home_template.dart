@@ -46,14 +46,52 @@ class HomeTemplate extends StatelessWidget {
         ),
         leading: const IconButton(onPressed: null, icon: Icon(Icons.menu)),
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        primary: false,
-        padding: const EdgeInsets.all(20),
-        mainAxisSpacing: 10,
-        children: restaurants
-            .map((restaurant) => RestaurantCard(restaurant: restaurant))
-            .toList(),
+      body: Container(
+        alignment: Alignment.topCenter,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: FilterChip(
+                      label: const Text(
+                        'Free Delivery Available',
+                        style: TextStyle(fontSize: 9),
+                      ),
+                      onSelected: (value) {},
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: FilterChip(
+                      label: const Text(
+                        'Exclusive Partners',
+                        style: TextStyle(fontSize: 9),
+                      ),
+                      onSelected: (value) {},
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                primary: false,
+                padding: const EdgeInsets.all(20),
+                mainAxisSpacing: 10,
+                childAspectRatio: 1,
+                children: restaurants
+                    .map((restaurant) => RestaurantCard(restaurant: restaurant))
+                    .toList(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
