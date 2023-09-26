@@ -19,32 +19,29 @@ class RestaurantCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Container(
-                width: 50,
-                // constraints: const BoxConstraints(
-                //   maxHeight: 80,
-                //   maxWidth: 200,
-                // ),
+              borderRadius: BorderRadius.circular(10),
+              child: SizedBox(
+                width: double.infinity,
+                height: 100,
                 child: Image.network(restaurant.imageUrl),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: Text(
                 restaurant.name,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Wrap(
                 spacing: 5.0,
                 runSpacing: 0.0,
                 children: restaurant.tags
                     .map(
                       (tag) => Text(
-                        tag,
+                        '#$tag',
                         style: const TextStyle(
                           fontSize: 9,
                         ),
