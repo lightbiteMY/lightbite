@@ -3,7 +3,6 @@ import 'dart:collection';
 import 'package:flutter/widgets.dart';
 import 'package:lightbite/models/restaurant_model.dart';
 import 'package:lightbite/services/api.dart';
-import 'package:provider/provider.dart';
 
 class RestaurantListProvider extends ChangeNotifier {
   List<RestaurantModel> _restaurantList = [];
