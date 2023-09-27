@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lightbite/page/home_page.dart';
+import 'package:lightbite/pages/home_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   final String title;
