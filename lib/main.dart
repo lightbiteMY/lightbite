@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:lightbite/navigation/bottom_navbar.dart';
+import 'package:lightbite/providers/restaurant_list_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => RestaurantListProvider())
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
