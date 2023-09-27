@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lightbite/providers/restaurant_list_provider.dart';
 import 'package:lightbite/models/address.dart';
 import 'package:lightbite/models/restaurant_model.dart';
 import 'package:lightbite/templates/home_template.dart';
@@ -12,18 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // dummy hardcoded
   late Address address;
   String defaultInstruction = 'Please Set Your Address';
-  List<RestaurantModel> restaurants = List.generate(
-    20,
-    (index) => RestaurantModel(
-        'name $index',
-        (x: 2.964994, y: 101.7721517),
-        ['Chinese', 'FastFood', 'Healthy'],
-        'https://sdsgroups.com/wp-content/uploads/2021/11/cropped-Asset-3-e1637812026983.png'),
-  );
-  // remove until here
   @override
   Widget build(BuildContext context) {
     address =
@@ -41,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     // );
     return HomeTemplate(
       address: address.getFullAddress ?? defaultInstruction,
-      restaurants: restaurants,
+      restaurants: Provider.of<RestaurantListProvider>(context).restaurantList,
     );
   }
 }
