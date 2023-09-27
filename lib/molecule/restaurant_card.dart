@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lightbite/data/restaurant_model.dart';
+import 'package:lightbite/models/restaurant_model.dart';
 
 class RestaurantCard extends StatelessWidget {
   final RestaurantModel restaurant;
