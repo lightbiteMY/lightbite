@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lightbite/data/restaurant.dart';
+import 'package:lightbite/data/restaurant_model.dart';
 import 'package:lightbite/molecule/restaurant_card.dart';
 
 class HomeTemplate extends StatelessWidget {
   final String address;
-  final List<Restaurant> restaurants;
+  final List<RestaurantModel> restaurants;
   const HomeTemplate({
     super.key,
     required this.address,

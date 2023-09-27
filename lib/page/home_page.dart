@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lightbite/data/address.dart';
-import 'package:lightbite/data/restaurant.dart';
+import 'package:lightbite/data/restaurant_model.dart';
 import 'package:lightbite/template/home_template.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,9 +15,9 @@ class _HomePageState extends State<HomePage> {
   // dummy hardcoded
   late Address address;
   String defaultInstruction = 'Please Set Your Address';
-  List<Restaurant> restaurants = List.generate(
+  List<RestaurantModel> restaurants = List.generate(
     20,
-    (index) => Restaurant(
+    (index) => RestaurantModel(
         'name $index',
         (x: 2.964994, y: 101.7721517),
         ['Chinese', 'FastFood', 'Healthy'],
