@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lightbite/providers/restaurant_list_provider.dart';
 import 'package:lightbite/models/address.dart';
-import 'package:lightbite/models/restaurant_model.dart';
 import 'package:lightbite/templates/home_template.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +16,8 @@ class _HomePageState extends State<HomePage> {
   String defaultInstruction = 'Please Set Your Address';
   @override
   Widget build(BuildContext context) {
+    final restaurantListProvider = Provider.of<RestaurantListProvider>(context);
+    restaurantListProvider.getRestaurantList();
     address =
         const Address(null, null, null, null, null, null, null, null, null);
     // address = const Address(
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     // );
     return HomeTemplate(
       address: address.getFullAddress ?? defaultInstruction,
-      restaurants: Provider.of<RestaurantListProvider>(context).restaurantList,
+      restaurants: restaurantListProvider.restaurantList,
     );
   }
 }
