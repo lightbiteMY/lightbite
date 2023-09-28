@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:lightbite/models/coordinate.dart';
+import 'package:lightbite/models/coordinate_model.dart';
 
 List<RestaurantModel> restaurantListModelFromJson(String data) =>
     List<RestaurantModel>.from(
