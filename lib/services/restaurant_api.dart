@@ -3,8 +3,8 @@ import 'package:lightbite/models/restaurant_model.dart';
 
 class RestaurantApiService {
   Future<List<RestaurantModel>> getRestaurantList() async {
-    var response =
-        await http.get(Uri.parse("http://localhost:3000/getRestaurantList"));
+    var response = await http.get(
+        Uri.parse("http://localhost:3000/restaurant/v1/getRestaurantList"));
 
     if (response.statusCode == 200) {
       var data = response.body;
