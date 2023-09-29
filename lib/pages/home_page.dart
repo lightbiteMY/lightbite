@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lightbite/providers/restaurant_list_provider.dart';
-import 'package:lightbite/models/address.dart';
+import 'package:lightbite/models/address_model.dart';
 import 'package:lightbite/templates/home_template.dart';
 import 'package:provider/provider.dart';
 
