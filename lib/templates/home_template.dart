@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:lightbite/models/address_model.dart';
 import 'package:lightbite/models/restaurant_model.dart';
 import 'package:lightbite/molecule/restaurant_card.dart';
 
 class HomeTemplate extends StatelessWidget {
-  final String address;
+  final String defaultInstruction = 'Please Set Your Address';
   final List<RestaurantModel> restaurants;
+  final List<AddressModel> favouritePlaces;
   const HomeTemplate({
     super.key,
-    required this.address,
     required this.restaurants,
+    required this.favouritePlaces,
   });
 
   @override
@@ -22,7 +24,14 @@ class HomeTemplate extends StatelessWidget {
             showModalBottomSheet(
               context: context,
               builder: (BuildContext context) {
-                return Container();
+                return ListView(
+                  padding: const EdgeInsets.all(8),
+                  children: favouritePlaces
+                      .map((place) => ListTile(
+                            title: Text(place.name!),
+                          ))
+                      .toList(),
+                );
               },
             );
           },
@@ -33,7 +42,9 @@ class HomeTemplate extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    address,
+                    favouritePlaces.isNotEmpty
+                        ? favouritePlaces[0].getName!
+                        : defaultInstruction,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 4,
                     style: const TextStyle(fontSize: 10, color: Colors.black),
