@@ -1,6 +1,6 @@
 import 'package:lightbite/models/coordinate_model.dart';
 
-class Address {
+class AddressModel {
   final String? name;
   final String? line1;
   final String? line2;
@@ -9,9 +9,9 @@ class Address {
   final String? city;
   final String? postcode;
   final String? state;
-  final Coordinate? coordinate;
+  final CoordinateModel? coordinate;
 
-  const Address(
+  const AddressModel(
     this.name,
     this.line1,
     this.line2,
