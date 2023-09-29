@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int selectedFavouritePlace = 0;
   @override
   void initState() {
     super.initState();
@@ -19,6 +20,13 @@ class _HomePageState extends State<HomePage> {
         .getRestaurantList();
     Provider.of<FavouritePlaceListProvider>(context, listen: false)
         .getFavouritePlaceList();
+  }
+
+  void changeFavouritePlace(value) {
+    setState(() {
+      selectedFavouritePlace = value;
+    });
+    Navigator.of(context).pop();
   }
 
   @override
@@ -30,6 +38,8 @@ class _HomePageState extends State<HomePage> {
     return HomeTemplate(
       restaurants: restaurantListProvider.restaurantList,
       favouritePlaces: favouritePlaceListProvider.favouritePlaceList,
+      selectedFavouritePlace: selectedFavouritePlace,
+      changeFavouritePlace: changeFavouritePlace,
     );
   }
 }
