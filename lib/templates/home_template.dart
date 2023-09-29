@@ -7,11 +7,14 @@ class HomeTemplate extends StatelessWidget {
   final String defaultInstruction = 'Please Set Your Address';
   final List<RestaurantModel> restaurants;
   final List<AddressModel> favouritePlaces;
-  const HomeTemplate({
-    super.key,
-    required this.restaurants,
-    required this.favouritePlaces,
-  });
+  final int selectedFavouritePlace;
+  final Function changeFavouritePlace;
+  const HomeTemplate(
+      {super.key,
+      required this.restaurants,
+      required this.favouritePlaces,
+      required this.selectedFavouritePlace,
+      required this.changeFavouritePlace});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +30,19 @@ class HomeTemplate extends StatelessWidget {
                 return ListView(
                   padding: const EdgeInsets.all(8),
                   children: favouritePlaces
-                      .map((place) => ListTile(
-                            title: Text(place.name!),
+                      .map((place) => RadioListTile(
+                            groupValue: selectedFavouritePlace,
+                            onChanged: (value) => changeFavouritePlace(value),
+                            value: favouritePlaces.indexOf(place),
+                            title: Text(
+                              place.name!,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(
+                              place.getFullAddress!,
+                              style: const TextStyle(fontSize: 10),
+                            ),
                           ))
                       .toList(),
                 );
@@ -43,7 +57,7 @@ class HomeTemplate extends StatelessWidget {
                 children: [
                   Text(
                     favouritePlaces.isNotEmpty
-                        ? favouritePlaces[0].getName!
+                        ? favouritePlaces[selectedFavouritePlace].getName!
                         : defaultInstruction,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 4,
