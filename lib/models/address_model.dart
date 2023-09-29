@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:lightbite/models/coordinate_model.dart';
+
+List<AddressModel> favouriteAddressListModelFromJson(String data) =>
+    List<AddressModel>.from(
+        json.decode(data).map((x) => AddressModel.fromJson(x)));
 
 class AddressModel {
   final String? name;
@@ -22,6 +28,18 @@ class AddressModel {
     this.state,
     this.coordinate,
   );
+
+  factory AddressModel.fromJson(Map<String, dynamic> json) => AddressModel(
+        json["name"],
+        json["line1"],
+        json["line2"],
+        json["line3"],
+        json["line4"],
+        json["city"],
+        json["postcode"],
+        json["state"],
+        CoordinateModel.fromJson(json["coordinate"]),
+      );
 
   Map<String, dynamic> toJson() => {
         'name': name,
