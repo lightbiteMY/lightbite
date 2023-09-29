@@ -14,10 +14,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late Address address;
   String defaultInstruction = 'Please Set Your Address';
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<RestaurantListProvider>(context, listen: false)
+        .getRestaurantList();
+  }
+
   @override
   Widget build(BuildContext context) {
     final restaurantListProvider = Provider.of<RestaurantListProvider>(context);
-    restaurantListProvider.getRestaurantList();
     address =
         const Address(null, null, null, null, null, null, null, null, null);
     // address = const Address(
