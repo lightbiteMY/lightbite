@@ -8,7 +8,7 @@ List<RestaurantModel> restaurantListModelFromJson(String data) =>
 
 class RestaurantModel {
   final String name;
-  final Coordinate coordinate;
+  final CoordinateModel coordinate;
   final List tags;
   final String imageUrl;
 
@@ -17,7 +17,7 @@ class RestaurantModel {
   factory RestaurantModel.fromJson(Map<String, dynamic> json) =>
       RestaurantModel(
         json["name"],
-        Coordinate.fromJson(json["coordinate"]),
+        CoordinateModel.fromJson(json["coordinate"]),
         json["tags"],
         json["imageUrl"],
       );
