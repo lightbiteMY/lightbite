@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lightbite/providers/favourite_place_list_provider.dart';
 import 'package:lightbite/providers/restaurant_list_provider.dart';
-import 'package:lightbite/models/address_model.dart';
 import 'package:lightbite/templates/home_template.dart';
 import 'package:provider/provider.dart';
 
@@ -12,35 +12,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late AddressModel address;
-  String defaultInstruction = 'Please Set Your Address';
-
   @override
   void initState() {
     super.initState();
     Provider.of<RestaurantListProvider>(context, listen: false)
         .getRestaurantList();
+    Provider.of<FavouritePlaceListProvider>(context, listen: false)
+        .getFavouritePlaceList();
   }
 
   @override
   Widget build(BuildContext context) {
     final restaurantListProvider = Provider.of<RestaurantListProvider>(context);
-    address = const AddressModel(
-        null, null, null, null, null, null, null, null, null);
-    // address = const Address(
-    //   'Home',
-    //   '21',
-    //   'JLN 1',
-    //   'TAMAN 3',
-    //   null,
-    //   'KAJANG',
-    //   '43000',
-    //   'SELANGOR',
-    //   (x: 10.0, y: 20.0),
-    // );
+    final favouritePlaceListProvider =
+        Provider.of<FavouritePlaceListProvider>(context);
+
     return HomeTemplate(
-      address: address.getFullAddress ?? defaultInstruction,
       restaurants: restaurantListProvider.restaurantList,
+      favouritePlaces: favouritePlaceListProvider.favouritePlaceList,
     );
   }
 }
