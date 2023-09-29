@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:lightbite/models/coordinate_model.dart';
 
-List<AddressModel> favouriteAddressListModelFromJson(String data) =>
+List<AddressModel> favouritePlaceListModelFromJson(String data) =>
     List<AddressModel>.from(
         json.decode(data).map((x) => AddressModel.fromJson(x)));
 
