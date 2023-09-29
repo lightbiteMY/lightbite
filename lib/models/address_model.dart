@@ -1,3 +1,5 @@
+import 'package:lightbite/models/coordinate_model.dart';
+
 class Address {
   final String? name;
   final String? line1;
@@ -7,7 +9,7 @@ class Address {
   final String? city;
   final String? postcode;
   final String? state;
-  final ({double x, double y})? coordinate;
+  final Coordinate? coordinate;
 
   const Address(
     this.name,
@@ -21,7 +23,7 @@ class Address {
     this.coordinate,
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         'name': name,
         'line1': line1,
         'line2': line2,
@@ -33,7 +35,7 @@ class Address {
         'coordinate': coordinate,
       };
 
-  operator [](String field) => toMap()[field];
+  operator [](String field) => toJson()[field];
 
   String? get getFullAddress {
     if (name == null) return null;
