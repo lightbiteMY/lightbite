@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:lightbite/models/restaurant_model.dart';
 
-class ApiService {
+class RestaurantApiService {
   Future<List<RestaurantModel>> getRestaurantList() async {
     var response =
         await http.get(Uri.parse("http://localhost:3000/getRestaurantList"));
