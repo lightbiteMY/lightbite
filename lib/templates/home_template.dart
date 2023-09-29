@@ -16,6 +16,32 @@ class HomeTemplate extends StatelessWidget {
       required this.selectedFavouritePlace,
       required this.changeFavouritePlace});
 
+  void showFavouritePlaceModal(context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return ListView(
+          padding: const EdgeInsets.all(8),
+          children: favouritePlaces
+              .map((place) => RadioListTile(
+                    groupValue: selectedFavouritePlace,
+                    onChanged: (value) => changeFavouritePlace(value),
+                    value: favouritePlaces.indexOf(place),
+                    title: Text(
+                      place.name!,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      place.getFullAddress!,
+                      style: const TextStyle(fontSize: 10),
+                    ),
+                  ))
+              .toList(),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,52 +50,48 @@ class HomeTemplate extends StatelessWidget {
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
           onTap: () {
-            showModalBottomSheet(
-              context: context,
-              builder: (BuildContext context) {
-                return ListView(
-                  padding: const EdgeInsets.all(8),
-                  children: favouritePlaces
-                      .map((place) => RadioListTile(
-                            groupValue: selectedFavouritePlace,
-                            onChanged: (value) => changeFavouritePlace(value),
-                            value: favouritePlaces.indexOf(place),
-                            title: Text(
-                              place.name!,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              place.getFullAddress!,
-                              style: const TextStyle(fontSize: 10),
-                            ),
-                          ))
-                      .toList(),
-                );
-              },
-            );
+            showFavouritePlaceModal(context);
           },
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SelectionContainer.disabled(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     favouritePlaces.isNotEmpty
                         ? favouritePlaces[selectedFavouritePlace].getName!
                         : defaultInstruction,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 4,
-                    style: const TextStyle(fontSize: 10, color: Colors.black),
+                    maxLines: 2,
+                    style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
                   ),
-                  const Icon(Icons.edit_location_alt_outlined)
+                  Text(
+                    favouritePlaces.isNotEmpty
+                        ? favouritePlaces[selectedFavouritePlace]
+                            .getFullAddress!
+                        : "",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 4,
+                    style: const TextStyle(fontSize: 10, color: Colors.grey),
+                  ),
                 ],
               ),
             ),
           ),
         ),
-        leading: const IconButton(onPressed: null, icon: Icon(Icons.menu)),
+        // leading: const IconButton(onPressed: null, icon: Icon(Icons.menu)),
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       showFavouritePlaceModal(context);
+        //     },
+        //     icon: const Icon(Icons.edit_location_alt_outlined),
+        //   )
+        // ],
       ),
       body: Container(
         alignment: Alignment.topCenter,
