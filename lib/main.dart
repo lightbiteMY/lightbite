@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lightbite/navigation/bottom_navbar.dart';
+import 'package:lightbite/providers/favourite_place_list_provider.dart';
 import 'package:lightbite/providers/restaurant_list_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -7,7 +8,9 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => RestaurantListProvider())
+        ChangeNotifierProvider(create: (context) => RestaurantListProvider()),
+        ChangeNotifierProvider(
+            create: (context) => FavouritePlaceListProvider())
       ],
       child: const MyApp(),
     ),
