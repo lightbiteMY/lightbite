@@ -9,23 +9,27 @@ List<RestaurantModel> restaurantListModelFromJson(String data) =>
 class RestaurantModel {
   final String name;
   final CoordinateModel coordinate;
-  final List tags;
+  final List foodTags;
+  final List platformTags;
   final String imageUrl;
 
-  const RestaurantModel(this.name, this.coordinate, this.tags, this.imageUrl);
+  const RestaurantModel(this.name, this.coordinate, this.foodTags,
+      this.platformTags, this.imageUrl);
 
   factory RestaurantModel.fromJson(Map<String, dynamic> json) =>
       RestaurantModel(
         json["name"],
         CoordinateModel.fromJson(json["coordinate"]),
-        json["tags"],
+        json["foodTags"],
+        json["platformTags"],
         json["imageUrl"],
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
         "coordinate": coordinate,
-        "tags": tags,
+        "foodTags": foodTags,
+        "platformTags": platformTags,
         "imageUrl": imageUrl,
       };
 }

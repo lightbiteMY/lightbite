@@ -38,7 +38,7 @@ class RestaurantCard extends StatelessWidget {
               child: Wrap(
                 spacing: 5.0,
                 runSpacing: 0.0,
-                children: restaurant.tags
+                children: restaurant.foodTags
                     .map(
                       (tag) => Text(
                         '#$tag',
