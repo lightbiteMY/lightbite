@@ -12,7 +12,7 @@ class HomeController extends StatefulWidget {
 }
 
 class _HomeControllerState extends State<HomeController> {
-  int selectedFavouritePlace = 0;
+  int selectedFavouritePlaceIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -22,9 +22,9 @@ class _HomeControllerState extends State<HomeController> {
         .getFavouritePlaceList();
   }
 
-  void changeFavouritePlace(value) {
+  void onChangeFavouritePlace(value) {
     setState(() {
-      selectedFavouritePlace = value;
+      selectedFavouritePlaceIndex = value;
     });
     Navigator.of(context).pop();
   }
@@ -38,8 +38,8 @@ class _HomeControllerState extends State<HomeController> {
     return HomePage(
       restaurants: restaurantListProvider.restaurantList,
       favouritePlaces: favouritePlaceListProvider.favouritePlaceList,
-      selectedFavouritePlace: selectedFavouritePlace,
-      changeFavouritePlace: changeFavouritePlace,
+      selectedFavouritePlaceIndex: selectedFavouritePlaceIndex,
+      onChangeFavouritePlace: onChangeFavouritePlace,
     );
   }
 }

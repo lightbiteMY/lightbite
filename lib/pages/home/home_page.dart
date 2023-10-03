@@ -7,14 +7,14 @@ class HomePage extends StatelessWidget {
   final String defaultInstruction = 'Please Set Your Address';
   final List<RestaurantModel> restaurants;
   final List<AddressModel> favouritePlaces;
-  final int selectedFavouritePlace;
-  final Function changeFavouritePlace;
+  final int selectedFavouritePlaceIndex;
+  final Function onChangeFavouritePlace;
   const HomePage(
       {super.key,
       required this.restaurants,
       required this.favouritePlaces,
-      required this.selectedFavouritePlace,
-      required this.changeFavouritePlace});
+      required this.selectedFavouritePlaceIndex,
+      required this.onChangeFavouritePlace});
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,8 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   children: favouritePlaces
                       .map((place) => RadioListTile(
-                            groupValue: selectedFavouritePlace,
-                            onChanged: (value) => changeFavouritePlace(value),
+                            groupValue: selectedFavouritePlaceIndex,
+                            onChanged: (value) => onChangeFavouritePlace(value),
                             value: favouritePlaces.indexOf(place),
                             title: Text(
                               place.name!,
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   Text(
                     favouritePlaces.isNotEmpty
-                        ? favouritePlaces[selectedFavouritePlace].getName!
+                        ? favouritePlaces[selectedFavouritePlaceIndex].getName!
                         : defaultInstruction,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                   ),
                   Text(
                     favouritePlaces.isNotEmpty
-                        ? favouritePlaces[selectedFavouritePlace]
+                        ? favouritePlaces[selectedFavouritePlaceIndex]
                             .getFullAddress!
                         : "",
                     overflow: TextOverflow.ellipsis,
