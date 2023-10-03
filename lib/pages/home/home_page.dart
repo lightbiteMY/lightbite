@@ -3,13 +3,13 @@ import 'package:lightbite/models/address_model.dart';
 import 'package:lightbite/models/restaurant_model.dart';
 import 'package:lightbite/pages/home/widgets/restaurant_card_widget.dart';
 
-class HomeTemplate extends StatelessWidget {
+class HomePage extends StatelessWidget {
   final String defaultInstruction = 'Please Set Your Address';
   final List<RestaurantModel> restaurants;
   final List<AddressModel> favouritePlaces;
   final int selectedFavouritePlace;
   final Function changeFavouritePlace;
-  const HomeTemplate(
+  const HomePage(
       {super.key,
       required this.restaurants,
       required this.favouritePlaces,
