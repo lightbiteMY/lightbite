@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lightbite/pages/home_page.dart';
+import 'package:lightbite/pages/home/home_controller.dart';
+import 'package:lightbite/providers/favourite_place_list_provider.dart';
+import 'package:lightbite/providers/restaurant_list_provider.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavBar extends StatefulWidget {
   final String title;
@@ -11,12 +14,6 @@ class BottomNavBar extends StatefulWidget {
 
 class BottomNavBarState extends State<BottomNavBar> {
   int currentPageIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      currentPageIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +30,11 @@ class BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        onDestinationSelected: _onItemTapped,
+        onDestinationSelected: (value) {
+          setState(() {
+            currentPageIndex = value;
+          });
+        },
         destinations: destinations,
         selectedIndex: currentPageIndex,
         // backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
@@ -41,9 +42,17 @@ class BottomNavBarState extends State<BottomNavBar> {
       ),
       // backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
       body: <Widget>[
-        const HomePage(),
-        const HomePage(),
-        const HomePage(),
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+                create: (context) => RestaurantListProvider()),
+            ChangeNotifierProvider(
+                create: (context) => FavouritePlaceListProvider()),
+          ],
+          child: const HomeController(),
+        ),
+        const Placeholder(),
+        const Placeholder(),
       ][currentPageIndex],
     );
   }

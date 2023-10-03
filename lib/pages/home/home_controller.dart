@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:lightbite/pages/home/home_page.dart';
 import 'package:lightbite/providers/favourite_place_list_provider.dart';
 import 'package:lightbite/providers/restaurant_list_provider.dart';
-import 'package:lightbite/templates/home_template.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeController extends StatefulWidget {
+  const HomeController({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeController> createState() => _HomeControllerState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int selectedFavouritePlace = 0;
+class _HomeControllerState extends State<HomeController> {
+  int selectedFavouritePlaceIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -22,9 +22,9 @@ class _HomePageState extends State<HomePage> {
         .getFavouritePlaceList();
   }
 
-  void changeFavouritePlace(value) {
+  void onChangeFavouritePlace(value) {
     setState(() {
-      selectedFavouritePlace = value;
+      selectedFavouritePlaceIndex = value;
     });
     Navigator.of(context).pop();
   }
@@ -35,11 +35,11 @@ class _HomePageState extends State<HomePage> {
     final favouritePlaceListProvider =
         Provider.of<FavouritePlaceListProvider>(context);
 
-    return HomeTemplate(
+    return HomePage(
       restaurants: restaurantListProvider.restaurantList,
       favouritePlaces: favouritePlaceListProvider.favouritePlaceList,
-      selectedFavouritePlace: selectedFavouritePlace,
-      changeFavouritePlace: changeFavouritePlace,
+      selectedFavouritePlaceIndex: selectedFavouritePlaceIndex,
+      onChangeFavouritePlace: onChangeFavouritePlace,
     );
   }
 }
