@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lightbite/pages/home_page.dart';
+import 'package:lightbite/pages/home/home_controller.dart';
 
 class BottomNavBar extends StatefulWidget {
   final String title;
@@ -41,9 +41,9 @@ class BottomNavBarState extends State<BottomNavBar> {
       ),
       // backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
       body: <Widget>[
-        const HomePage(),
-        const HomePage(),
-        const HomePage(),
+        const HomeController(),
+        const HomeController(),
+        const HomeController(),
       ][currentPageIndex],
     );
   }
