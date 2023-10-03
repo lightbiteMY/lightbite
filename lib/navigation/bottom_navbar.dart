@@ -12,12 +12,6 @@ class BottomNavBar extends StatefulWidget {
 class BottomNavBarState extends State<BottomNavBar> {
   int currentPageIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      currentPageIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     List<NavigationDestination> destinations = [
@@ -33,7 +27,11 @@ class BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        onDestinationSelected: _onItemTapped,
+        onDestinationSelected: (value) {
+          setState(() {
+            currentPageIndex = value;
+          });
+        },
         destinations: destinations,
         selectedIndex: currentPageIndex,
         // backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
