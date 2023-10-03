@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lightbite/providers/favourite_place_list_provider.dart';
 import 'package:lightbite/providers/restaurant_list_provider.dart';
-import 'package:lightbite/templates/home_template.dart';
+import 'package:lightbite/pages/home_template.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
