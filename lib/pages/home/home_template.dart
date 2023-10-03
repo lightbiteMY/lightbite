@@ -83,15 +83,6 @@ class HomeTemplate extends StatelessWidget {
             ),
           ),
         ),
-        // leading: const IconButton(onPressed: null, icon: Icon(Icons.menu)),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {
-        //       showFavouritePlaceModal(context);
-        //     },
-        //     icon: const Icon(Icons.edit_location_alt_outlined),
-        //   )
-        // ],
       ),
       body: Container(
         alignment: Alignment.topCenter,
@@ -133,7 +124,8 @@ class HomeTemplate extends StatelessWidget {
                 mainAxisSpacing: 10,
                 childAspectRatio: 1,
                 children: restaurants
-                    .map((restaurant) => RestaurantCard(restaurant: restaurant))
+                    .map((restaurant) =>
+                        RestaurantCardWidget(restaurant: restaurant))
                     .toList(),
               ),
             ),
