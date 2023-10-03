@@ -68,7 +68,6 @@ class HomePage extends StatelessWidget {
                     ? favouritePlaces[selectedFavouritePlaceIndex]
                         .getFullAddress!
                     : "",
-                overflow: TextOverflow.fade,
                 style: const TextStyle(fontSize: 10, color: Colors.grey),
               ),
             ],
