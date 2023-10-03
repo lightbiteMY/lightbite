@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lightbite/pages/home/home_controller.dart';
+import 'package:lightbite/providers/favourite_place_list_provider.dart';
+import 'package:lightbite/providers/restaurant_list_provider.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavBar extends StatefulWidget {
   final String title;
@@ -39,9 +42,17 @@ class BottomNavBarState extends State<BottomNavBar> {
       ),
       // backgroundColor: const Color.fromRGBO(230, 230, 230, 1),
       body: <Widget>[
-        const HomeController(),
-        const HomeController(),
-        const HomeController(),
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+                create: (context) => RestaurantListProvider()),
+            ChangeNotifierProvider(
+                create: (context) => FavouritePlaceListProvider()),
+          ],
+          child: const HomeController(),
+        ),
+        const Placeholder(),
+        const Placeholder(),
       ][currentPageIndex],
     );
   }
