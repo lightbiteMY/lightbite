@@ -16,32 +16,6 @@ class HomePage extends StatelessWidget {
       required this.selectedFavouritePlace,
       required this.changeFavouritePlace});
 
-  void showFavouritePlaceModal(context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return ListView(
-          padding: const EdgeInsets.all(8),
-          children: favouritePlaces
-              .map((place) => RadioListTile(
-                    groupValue: selectedFavouritePlace,
-                    onChanged: (value) => changeFavouritePlace(value),
-                    value: favouritePlaces.indexOf(place),
-                    title: Text(
-                      place.name!,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      place.getFullAddress!,
-                      style: const TextStyle(fontSize: 10),
-                    ),
-                  ))
-              .toList(),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +24,30 @@ class HomePage extends StatelessWidget {
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
           onTap: () {
-            showFavouritePlaceModal(context);
+            showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return ListView(
+                  padding: const EdgeInsets.all(8),
+                  children: favouritePlaces
+                      .map((place) => RadioListTile(
+                            groupValue: selectedFavouritePlace,
+                            onChanged: (value) => changeFavouritePlace(value),
+                            value: favouritePlaces.indexOf(place),
+                            title: Text(
+                              place.name!,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(
+                              place.getFullAddress!,
+                              style: const TextStyle(fontSize: 10),
+                            ),
+                          ))
+                      .toList(),
+                );
+              },
+            );
           },
           child: Padding(
             padding: const EdgeInsets.all(10.0),
