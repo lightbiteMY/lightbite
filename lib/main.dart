@@ -8,9 +8,12 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => RestaurantListProvider()),
         ChangeNotifierProvider(
-            create: (context) => FavouritePlaceListProvider())
+          create: (context) => RestaurantListProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FavouritePlaceListProvider(),
+        ),
       ],
       child: const MyApp(),
     ),
