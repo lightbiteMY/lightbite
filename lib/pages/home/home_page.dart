@@ -8,17 +8,17 @@ const String defaultInstruction = 'Please Set Your Address';
 class HomePage extends StatelessWidget {
   final List<RestaurantModel> restaurants;
   final List<AddressModel> favouritePlaces;
-  final int selectedFavouritePlaceIndex;
   final Function onChangeFavouritePlace;
+
   const HomePage(
       {super.key,
       required this.restaurants,
       required this.favouritePlaces,
-      required this.selectedFavouritePlaceIndex,
       required this.onChangeFavouritePlace});
 
   @override
   Widget build(BuildContext context) {
+    int selectedFavouritePlaceIndex = 0;
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -29,25 +29,32 @@ class HomePage extends StatelessWidget {
             showModalBottomSheet(
               context: context,
               builder: (BuildContext context) {
-                return ListView(
-                  padding: const EdgeInsets.all(8),
-                  children: favouritePlaces
-                      .map((place) => RadioListTile(
-                            groupValue: selectedFavouritePlaceIndex,
-                            onChanged: (value) => onChangeFavouritePlace(value),
-                            value: favouritePlaces.indexOf(place),
-                            title: Text(
-                              place.name!,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              place.getFullAddress!,
-                              style: const TextStyle(fontSize: 10),
-                            ),
-                          ))
-                      .toList(),
-                );
+                return StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setState) {
+                  return ListView(
+                    padding: const EdgeInsets.all(8),
+                    children: favouritePlaces
+                        .map((place) => RadioListTile(
+                              groupValue: selectedFavouritePlaceIndex,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedFavouritePlaceIndex = value!;
+                                });
+                              },
+                              value: favouritePlaces.indexOf(place),
+                              title: Text(
+                                place.name!,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(
+                                place.getFullAddress!,
+                                style: const TextStyle(fontSize: 10),
+                              ),
+                            ))
+                        .toList(),
+                  );
+                });
               },
             );
           },
