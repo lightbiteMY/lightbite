@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         title: InkWell(
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
@@ -50,35 +51,27 @@ class HomePage extends StatelessWidget {
               },
             );
           },
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SelectionContainer.disabled(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    favouritePlaces.isNotEmpty
-                        ? favouritePlaces[selectedFavouritePlaceIndex].getName!
-                        : defaultInstruction,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    favouritePlaces.isNotEmpty
-                        ? favouritePlaces[selectedFavouritePlaceIndex]
-                            .getFullAddress!
-                        : "",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 4,
-                    style: const TextStyle(fontSize: 10, color: Colors.grey),
-                  ),
-                ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                favouritePlaces.isNotEmpty
+                    ? favouritePlaces[selectedFavouritePlaceIndex].getName!
+                    : defaultInstruction,
+                style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
               ),
-            ),
+              Text(
+                favouritePlaces.isNotEmpty
+                    ? favouritePlaces[selectedFavouritePlaceIndex]
+                        .getFullAddress!
+                    : "",
+                overflow: TextOverflow.fade,
+                style: const TextStyle(fontSize: 10, color: Colors.grey),
+              ),
+            ],
           ),
         ),
       ),
