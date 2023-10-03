@@ -12,7 +12,6 @@ class HomeController extends StatefulWidget {
 }
 
 class _HomeControllerState extends State<HomeController> {
-  int selectedFavouritePlaceIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -23,9 +22,6 @@ class _HomeControllerState extends State<HomeController> {
   }
 
   void onChangeFavouritePlace(value) {
-    setState(() {
-      selectedFavouritePlaceIndex = value;
-    });
     Navigator.of(context).pop();
   }
 
@@ -38,7 +34,6 @@ class _HomeControllerState extends State<HomeController> {
     return HomePage(
       restaurants: restaurantListProvider.restaurantList,
       favouritePlaces: favouritePlaceListProvider.favouritePlaceList,
-      selectedFavouritePlaceIndex: selectedFavouritePlaceIndex,
       onChangeFavouritePlace: onChangeFavouritePlace,
     );
   }
