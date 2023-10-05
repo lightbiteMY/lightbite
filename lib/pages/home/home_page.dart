@@ -30,7 +30,6 @@ class HomePage extends StatelessWidget {
             showModalBottomSheet(
               context: context,
               builder: (BuildContext context) {
-                int index = selectedFavouritePlaceIndex;
                 return StatefulBuilder(
                     builder: (BuildContext context, StateSetter setState) {
                   return Column(
@@ -41,12 +40,9 @@ class HomePage extends StatelessWidget {
                           padding: const EdgeInsets.all(8),
                           children: favouritePlaces
                               .map((place) => RadioListTile(
-                                    groupValue: index,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        index = value!;
-                                      });
-                                    },
+                                    groupValue: selectedFavouritePlaceIndex,
+                                    onChanged: (value) =>
+                                        onChangeFavouritePlace(value),
                                     value: favouritePlaces.indexOf(place),
                                     title: Text(
                                       place.name!,
@@ -65,16 +61,13 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(30),
                         child: SizedBox(
                           child: FilledButton(
-                            onPressed: () {
-                              onChangeFavouritePlace(index);
-                            },
+                            onPressed: () {},
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text("Confirm"),
-                                Icon(Icons.done),
+                                Icon(Icons.add),
+                                Text("Add New Place"),
                               ],
                             ),
                           ),
