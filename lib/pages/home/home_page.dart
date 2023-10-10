@@ -8,15 +8,22 @@ const String defaultInstruction = 'Please Set Your Address';
 class HomePage extends StatelessWidget {
   final List<RestaurantModel> restaurants;
   final List<AddressModel> favouritePlaces;
+  final List<String> filterList;
+  final List<String> selectedFilterList;
   final int selectedFavouritePlaceIndex;
   final Function onChangeFavouritePlace;
+  final Function onChangeFilter;
 
-  const HomePage(
-      {super.key,
-      required this.restaurants,
-      required this.favouritePlaces,
-      required this.selectedFavouritePlaceIndex,
-      required this.onChangeFavouritePlace});
+  const HomePage({
+    super.key,
+    required this.restaurants,
+    required this.favouritePlaces,
+    required this.filterList,
+    required this.selectedFilterList,
+    required this.selectedFavouritePlaceIndex,
+    required this.onChangeFavouritePlace,
+    required this.onChangeFilter,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -97,33 +104,19 @@ class HomePage extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: FilterChip(
-                      label: const Text(
-                        'Free Delivery Available',
-                        style: TextStyle(fontSize: 9),
-                      ),
-                      onSelected: (value) {},
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: FilterChip(
-                      label: const Text(
-                        'Exclusive Partners',
-                        style: TextStyle(fontSize: 9),
-                      ),
-                      onSelected: (value) {},
-                    ),
+            Wrap(
+              spacing: 5,
+              children: filterList
+                  .map(
+                    (option) => FilterChip(
+                        label:
+                            Text(option, style: const TextStyle(fontSize: 9)),
+                        selected: selectedFilterList.contains(option),
+                        onSelected: (bool selected) {
+                          onChangeFilter(selected, option);
+                        }),
                   )
-                ],
-              ),
+                  .toList(),
             ),
             Expanded(
               child: GridView.count(
