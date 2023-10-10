@@ -129,8 +129,8 @@ class HomePage extends StatelessWidget {
               child: GridView.count(
                 crossAxisCount: 2,
                 primary: false,
-                padding: const EdgeInsets.all(20),
-                mainAxisSpacing: 10,
+                padding: const EdgeInsets.all(10),
+                mainAxisSpacing: 5,
                 childAspectRatio: 1,
                 children: restaurants
                     .map((restaurant) =>
