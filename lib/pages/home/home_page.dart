@@ -32,48 +32,39 @@ class HomePage extends StatelessWidget {
               builder: (BuildContext context) {
                 return StatefulBuilder(
                     builder: (BuildContext context, StateSetter setState) {
-                  return Column(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: ListView(
-                          padding: const EdgeInsets.all(8),
-                          children: favouritePlaces
-                              .map((place) => RadioListTile(
-                                    groupValue: selectedFavouritePlaceIndex,
-                                    onChanged: (value) =>
-                                        onChangeFavouritePlace(value),
-                                    value: favouritePlaces.indexOf(place),
-                                    title: Text(
-                                      place.name!,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    subtitle: Text(
-                                      place.getFullAddress!,
-                                      style: const TextStyle(fontSize: 10),
-                                    ),
-                                  ))
-                              .toList(),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(30),
-                        child: SizedBox(
-                          child: FilledButton(
-                            onPressed: () {},
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(Icons.add),
-                                Text("Add New Place"),
-                              ],
-                            ),
+                  return SafeArea(
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: ListView(
+                            padding: const EdgeInsets.all(8),
+                            children: favouritePlaces
+                                .map((place) => RadioListTile(
+                                      groupValue: selectedFavouritePlaceIndex,
+                                      onChanged: (value) =>
+                                          onChangeFavouritePlace(value),
+                                      value: favouritePlaces.indexOf(place),
+                                      title: Text(
+                                        place.name!,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      subtitle: Text(
+                                        place.getFullAddress!,
+                                        style: const TextStyle(fontSize: 10),
+                                      ),
+                                    ))
+                                .toList(),
                           ),
                         ),
-                      ),
-                    ],
+                        FilledButton.icon(
+                          onPressed: () {},
+                          icon: const Icon(Icons.add),
+                          label: const Text("Add New Place"),
+                        ),
+                      ],
+                    ),
                   );
                 });
               },
