@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return StatefulBuilder(
-                    builder: (BuildContext context, StateSetter setState) {
+                    builder: (BuildContext context, StateSetter setModalState) {
                   return SafeArea(
                     child: Column(
                       children: [
@@ -104,19 +104,94 @@ class HomePage extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Column(
           children: [
-            Wrap(
-              spacing: 5,
-              children: filterList
-                  .map(
-                    (option) => FilterChip(
-                        label:
-                            Text(option, style: const TextStyle(fontSize: 9)),
-                        selected: selectedFilterList.contains(option),
-                        onSelected: (bool selected) {
-                          onChangeFilter(selected, option);
-                        }),
-                  )
-                  .toList(),
+            SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.05,
+              child: InkWell(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return StatefulBuilder(builder:
+                          (BuildContext context, StateSetter setModalState) {
+                        List<String> selectedFilterListinModal =
+                            selectedFilterList;
+                        return AlertDialog(
+                          title: const Text('Filter'),
+                          content: Wrap(
+                            spacing: 10,
+                            children: filterList
+                                .map(
+                                  (option) => FilterChip(
+                                      label: Text(option,
+                                          style: const TextStyle(fontSize: 9)),
+                                      selected: selectedFilterListinModal
+                                          .contains(option),
+                                      onSelected: (bool selected) {
+                                        setModalState(() {
+                                          if (selected) {
+                                            selectedFilterListinModal
+                                                .add(option);
+                                          } else {
+                                            selectedFilterListinModal
+                                                .remove(option);
+                                            if (selectedFilterListinModal
+                                                .isEmpty) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                      'At least 1 option must be selected! Defaulted to ${filterList[0]}'),
+                                                ),
+                                              );
+                                              selectedFilterListinModal
+                                                  .add(filterList[0]);
+                                            }
+                                          }
+                                        });
+                                      }),
+                                )
+                                .toList(),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                onChangeFilter(selectedFilterListinModal);
+                              },
+                              child: const Text('Confirm'),
+                            )
+                          ],
+                        );
+                      });
+                    },
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 0,
+                    children: selectedFilterList.length <= 10
+                        ? selectedFilterList
+                            .map(
+                              (option) => Text(
+                                '#$option',
+                                style: const TextStyle(fontSize: 9),
+                              ),
+                            )
+                            .toList()
+                        : selectedFilterList
+                            .map(
+                              (option) => Text(
+                                '#$option',
+                                style: const TextStyle(fontSize: 9),
+                              ),
+                            )
+                            .toList()
+                            .sublist(0, 10),
+                  ),
+                ),
+              ),
             ),
             Expanded(
               child: GridView.count(
