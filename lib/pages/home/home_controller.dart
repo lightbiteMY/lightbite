@@ -37,16 +37,11 @@ class _HomeControllerState extends State<HomeController> {
     Navigator.of(context).pop();
   }
 
-  void onChangeFilter(selected, option) {
+  void onChangeFilter(list) {
     setState(() {
-      if (selected) {
-        return selectedFilterList.add(option);
-      }
-      selectedFilterList.remove(option);
-      if (selectedFilterList.isEmpty) {
-        selectedFilterList = [...filterList];
-      }
+      selectedFilterList = list;
     });
+    Navigator.of(context).pop();
   }
 
   @override
