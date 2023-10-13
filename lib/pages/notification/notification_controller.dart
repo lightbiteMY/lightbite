@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lightbite/models/notification_model.dart';
 import 'package:lightbite/pages/notification/notification_page.dart';
 import 'package:lightbite/providers/notification_list_provider.dart';
 import 'package:provider/provider.dart';
