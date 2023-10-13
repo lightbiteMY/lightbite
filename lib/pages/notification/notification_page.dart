@@ -17,12 +17,15 @@ class NotificationPage extends StatelessWidget {
             (notification) => Column(
               children: [
                 ListTile(
-                  tileColor: notification.readStatus
-                      ? Colors.green[50]
-                      : Colors.red[50],
                   leading: notification.readStatus
-                      ? const Icon(Icons.mark_email_read)
-                      : const Icon(Icons.mark_email_unread),
+                      ? const Icon(
+                          Icons.mark_email_read,
+                          color: Colors.green,
+                        )
+                      : const Icon(
+                          Icons.mark_email_unread,
+                          color: Colors.red,
+                        ),
                   title: Text(notification.title),
                   subtitle: Text(notification.subtitle),
                   trailing: Text(
