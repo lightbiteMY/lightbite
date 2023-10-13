@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:lightbite/models/notification_model.dart';
 import 'package:lightbite/pages/home/home_controller.dart';
+import 'package:lightbite/pages/notification/notification_controller.dart';
 import 'package:lightbite/providers/favourite_place_list_provider.dart';
+import 'package:lightbite/providers/notification_list_provider.dart';
 import 'package:lightbite/providers/restaurant_list_provider.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavBar extends StatefulWidget {
   final String title;
-  const BottomNavBar({super.key, required this.title});
+  const BottomNavBar({
+    super.key,
+    required this.title,
+  });
 
   @override
   BottomNavBarState createState() => BottomNavBarState();
@@ -16,12 +22,21 @@ class BottomNavBarState extends State<BottomNavBar> {
   int currentPageIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    Provider.of<NotificationListProvider>(context, listen: false)
+        .getNotificationList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     List<NavigationDestination> destinations = [
       const NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
       NavigationDestination(
           icon: Badge.count(
-            count: 10,
+            count: Provider.of<NotificationListProvider>(context)
+                .notificationList
+                .length,
             child: const Icon(Icons.mail),
           ),
           label: 'Notification'),
@@ -51,7 +66,7 @@ class BottomNavBarState extends State<BottomNavBar> {
           ],
           child: const HomeController(),
         ),
-        const Placeholder(),
+        const NotificationController(),
         const Placeholder(),
       ][currentPageIndex],
     );
