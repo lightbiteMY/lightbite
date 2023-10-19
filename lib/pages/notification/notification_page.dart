@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:lightbite/models/datetime_model.dart';
 import 'package:lightbite/models/notification_model.dart';
 
+const status = {
+  "System": Icons.settings,
+  "Order Made": Icons.shopping_cart_checkout,
+  "Order Received": Icons.done,
+  "Preparing": Icons.outdoor_grill,
+  "Delivering": Icons.local_shipping,
+  "Completed": Icons.price_check
+};
+
 class NotificationPage extends StatelessWidget {
   final List<NotificationModel> notificationList;
   const NotificationPage({
@@ -17,6 +26,7 @@ class NotificationPage extends StatelessWidget {
             (notification) => Column(
               children: [
                 ListTile(
+                  leading: Icon(status[notification.tag]),
                   title: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
