@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lightbite/models/notification_model.dart';
 import 'package:lightbite/pages/home/home_controller.dart';
 import 'package:lightbite/pages/notification/notification_controller.dart';
 import 'package:lightbite/providers/favourite_place_list_provider.dart';
@@ -27,15 +28,25 @@ class BottomNavBarState extends State<BottomNavBar> {
         .getNotificationList();
   }
 
+  int getUnreadCount() {
+    final unreadNotificationList = <NotificationModel>[];
+    for (final notification
+        in Provider.of<NotificationListProvider>(context).notificationList) {
+      if (notification.readStatus == false) {
+        unreadNotificationList.add(notification);
+      }
+    }
+
+    return unreadNotificationList.length;
+  }
+
   @override
   Widget build(BuildContext context) {
     List<NavigationDestination> destinations = [
       const NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
       NavigationDestination(
           icon: Badge.count(
-            count: Provider.of<NotificationListProvider>(context)
-                .notificationList
-                .length,
+            count: getUnreadCount(),
             child: const Icon(Icons.mail),
           ),
           label: 'Notification'),
