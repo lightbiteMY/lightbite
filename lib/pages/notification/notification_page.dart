@@ -26,7 +26,14 @@ class NotificationPage extends StatelessWidget {
             (notification) => Column(
               children: [
                 ListTile(
-                  leading: Icon(status[notification.tag]),
+                  leading: notification.readStatus
+                      ? CircleAvatar(
+                          child: Icon(status[notification.tag]),
+                        )
+                      : Badge(
+                          child: CircleAvatar(
+                          child: Icon(status[notification.tag]),
+                        )),
                   title: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,15 +41,15 @@ class NotificationPage extends StatelessWidget {
                       Text(
                         notification.title,
                         style: notification.readStatus
-                            ? const TextStyle(fontWeight: FontWeight.bold)
-                            : const TextStyle(fontWeight: FontWeight.normal),
+                            ? const TextStyle(fontWeight: FontWeight.normal)
+                            : const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(
                         DateTimeModel(notification.datetime).getDisplayDateTime,
                         style: notification.readStatus
-                            ? const TextStyle(
-                                fontSize: 9, fontWeight: FontWeight.bold)
-                            : const TextStyle(fontSize: 9),
+                            ? const TextStyle(fontSize: 9)
+                            : const TextStyle(
+                                fontSize: 9, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
