@@ -193,8 +193,45 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+                child: InkWell(
+                  onTap: () {},
+                  borderRadius: BorderRadius.circular(10),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: ListTile(
+                      title: const Text(
+                        "Enjoy Lowest Promotion Rate as a new Merchant now!",
+                        style: TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: const Text(
+                        "Terms & Conditions applied",
+                        style: TextStyle(fontSize: 8),
+                      ),
+                      trailing: FilledButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Join Now",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: GridView.count(
+                shrinkWrap: true,
                 crossAxisCount: 2,
                 primary: false,
                 padding: const EdgeInsets.all(10),
