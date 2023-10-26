@@ -4,6 +4,7 @@ import 'package:lightbite/models/restaurant_model.dart';
 import 'package:lightbite/pages/home/widgets/restaurant_card_widget.dart';
 
 const String defaultInstruction = 'Please Set Your Address';
+const int filterListLength = 5;
 
 class HomePage extends StatelessWidget {
   final List<RestaurantModel> restaurants;
@@ -104,145 +105,152 @@ class HomePage extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Column(
           children: [
-            SizedBox(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.05,
-              child: InkWell(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return StatefulBuilder(builder:
-                          (BuildContext context, StateSetter setModalState) {
-                        List<String> selectedFilterListinModal =
-                            selectedFilterList;
-                        return AlertDialog(
-                          title: const Text('Filter'),
-                          content: Wrap(
-                            spacing: 10,
-                            children: filterList
-                                .map(
-                                  (option) => FilterChip(
-                                      label: Text(option,
-                                          style: const TextStyle(fontSize: 9)),
-                                      selected: selectedFilterListinModal
-                                          .contains(option),
-                                      onSelected: (bool selected) {
-                                        setModalState(() {
-                                          if (selected) {
-                                            selectedFilterListinModal
-                                                .add(option);
-                                          } else {
-                                            selectedFilterListinModal
-                                                .remove(option);
-                                            if (selectedFilterListinModal
-                                                .isEmpty) {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                      'At least 1 option must be selected! Defaulted to ${filterList[0]}'),
-                                                ),
-                                              );
-                                              selectedFilterListinModal
-                                                  .add(filterList[0]);
-                                            }
-                                          }
-                                        });
-                                      }),
-                                )
-                                .toList(),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                onChangeFilter(selectedFilterListinModal);
-                              },
-                              child: const Text('Confirm'),
-                            )
-                          ],
-                        );
-                      });
-                    },
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Wrap(
-                    spacing: 8,
-                    runSpacing: 0,
-                    children: selectedFilterList.length <= 10
-                        ? selectedFilterList
-                            .map(
-                              (option) => Text(
-                                '#$option',
-                                style: const TextStyle(fontSize: 9),
-                              ),
-                            )
-                            .toList()
-                        : selectedFilterList
-                            .map(
-                              (option) => Text(
-                                '#$option',
-                                style: const TextStyle(fontSize: 9),
-                              ),
-                            )
-                            .toList()
-                            .sublist(0, 10),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Card(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+            Expanded(
+              child: SizedBox(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.05,
                 child: InkWell(
-                  onTap: () {},
-                  borderRadius: BorderRadius.circular(10),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: ListTile(
-                      title: const Text(
-                        "Enjoy Lowest Promotion Rate as a new Merchant now!",
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: const Text(
-                        "Terms & Conditions applied",
-                        style: TextStyle(fontSize: 8),
-                      ),
-                      trailing: FilledButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Join Now",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return StatefulBuilder(builder:
+                            (BuildContext context, StateSetter setModalState) {
+                          List<String> selectedFilterListinModal =
+                              selectedFilterList;
+                          return AlertDialog(
+                            title: const Text('Filter'),
+                            content: Wrap(
+                              spacing: 10,
+                              children: filterList
+                                  .map(
+                                    (option) => FilterChip(
+                                        label: Text(option,
+                                            style:
+                                                const TextStyle(fontSize: 9)),
+                                        selected: selectedFilterListinModal
+                                            .contains(option),
+                                        onSelected: (bool selected) {
+                                          setModalState(() {
+                                            if (selected) {
+                                              selectedFilterListinModal
+                                                  .add(option);
+                                            } else {
+                                              selectedFilterListinModal
+                                                  .remove(option);
+                                              if (selectedFilterListinModal
+                                                  .isEmpty) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                        'At least 1 option must be selected! Defaulted to ${filterList[0]}'),
+                                                  ),
+                                                );
+                                                selectedFilterListinModal
+                                                    .add(filterList[0]);
+                                              }
+                                            }
+                                          });
+                                        }),
+                                  )
+                                  .toList(),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  onChangeFilter(selectedFilterListinModal);
+                                },
+                                child: const Text('Confirm'),
+                              )
+                            ],
+                          );
+                        });
+                      },
+                    );
+                  },
+                  child: ListTile(
+                    leading: const Icon(Icons.filter_list),
+                    title: Wrap(
+                      spacing: 8,
+                      runSpacing: 0,
+                      children: selectedFilterList.length <= filterListLength
+                          ? selectedFilterList
+                              .map(
+                                (option) => Text(
+                                  '#$option',
+                                  style: const TextStyle(fontSize: 9),
+                                ),
+                              )
+                              .toList()
+                          : selectedFilterList
+                              .map(
+                                (option) => Text(
+                                  '#$option',
+                                  style: const TextStyle(fontSize: 9),
+                                ),
+                              )
+                              .toList()
+                              .sublist(0, filterListLength),
                     ),
                   ),
                 ),
               ),
             ),
             Expanded(
-              child: GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                primary: false,
-                padding: const EdgeInsets.all(10),
-                mainAxisSpacing: 5,
-                childAspectRatio: 1,
-                children: restaurants
-                    .map((restaurant) =>
-                        RestaurantCardWidget(restaurant: restaurant))
-                    .toList(),
+              flex: 10,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Card(
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: Theme.of(context).colorScheme.outline,
+                            ),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10))),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: ListTile(
+                            title: const Text(
+                              "Enjoy Lowest Promotion Rate as a new Merchant now!",
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: const Text(
+                              "Terms & Conditions applied",
+                              style: TextStyle(fontSize: 8),
+                            ),
+                            trailing: FilledButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Join Now",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: 2,
+                      primary: false,
+                      padding: const EdgeInsets.all(10),
+                      mainAxisSpacing: 5,
+                      childAspectRatio: 1,
+                      children: restaurants
+                          .map((restaurant) =>
+                              RestaurantCardWidget(restaurant: restaurant))
+                          .toList(),
+                    ),
+                  ],
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),
