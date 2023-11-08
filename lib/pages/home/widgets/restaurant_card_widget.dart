@@ -15,40 +15,43 @@ class RestaurantCardWidget extends StatelessWidget {
       elevation: 2,
       child: InkWell(
         onTap: () {},
+        borderRadius: BorderRadius.circular(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: SizedBox(
-                width: double.infinity,
-                height: 100,
-                child: Image.network(restaurant.imageUrl),
-              ),
+            SizedBox(
+              height: 120,
+              width: double.infinity,
+              child: Image.network(restaurant.imageUrl),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-              child: Text(
-                restaurant.name,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Wrap(
-                spacing: 5.0,
-                runSpacing: 0.0,
-                children: restaurant.foodTags
-                    .map(
-                      (tag) => Text(
-                        '#$tag',
-                        style: const TextStyle(
-                          fontSize: 9,
-                        ),
-                      ),
-                    )
-                    .toList(),
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: Text(
+                    restaurant.name,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Wrap(
+                    spacing: 5.0,
+                    runSpacing: 0.0,
+                    children: restaurant.foodTags
+                        .map(
+                          (tag) => Text(
+                            '#$tag',
+                            style: const TextStyle(
+                              fontSize: 9,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
