@@ -7,29 +7,29 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Row(
-          children: [
-            CircleAvatar(
-              child: Icon(Icons.settings),
-            ),
-            CircleAvatar(
-              child: Text('A'),
-            )
-          ],
+        Expanded(
+          child: Text('John Doe'),
         ),
         SizedBox(
-          height: 500,
-          child: Column(
-            children: const [
-              ListTile(
-                title: Text('Settings'),
+            width: double.infinity,
+            height: 500,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30))),
+              child: Column(
+                children: const [
+                  ListTile(
+                    title: Text('Settings'),
+                  ),
+                  ListTile(
+                    title: Text('History'),
+                  )
+                ],
               ),
-              ListTile(
-                title: Text('History'),
-              )
-            ],
-          ),
-        ),
+            )),
       ],
     );
   }

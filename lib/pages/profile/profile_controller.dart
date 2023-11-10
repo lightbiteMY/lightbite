@@ -16,6 +16,6 @@ class _ProfileControllerState extends State<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return ProfilePage();
+    return const ProfilePage();
   }
 }
