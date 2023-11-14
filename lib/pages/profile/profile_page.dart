@@ -1,35 +1,53 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final String username;
+  final String email;
+  final String version;
+  const ProfilePage({
+    super.key,
+    required this.username,
+    required this.email,
+    required this.version,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          child: Text('John Doe'),
-        ),
+        Text(username),
+        Text(email),
+        const Divider(),
         SizedBox(
-            width: double.infinity,
-            height: 500,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
-              child: Column(
-                children: const [
-                  ListTile(
-                    title: Text('Settings'),
-                  ),
-                  ListTile(
-                    title: Text('History'),
-                  )
-                ],
-              ),
-            )),
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                const ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text('Account'),
+                  trailing: Icon(Icons.chevron_right),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Settings'),
+                  trailing: Icon(Icons.chevron_right),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.history),
+                  title: Text('Order History'),
+                  trailing: Icon(Icons.chevron_right),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.logout),
+                  title: Text('Sign Out'),
+                ),
+                Text('Version: v$version'),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
