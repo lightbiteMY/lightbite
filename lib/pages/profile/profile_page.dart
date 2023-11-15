@@ -4,11 +4,13 @@ class ProfilePage extends StatelessWidget {
   final String username;
   final String email;
   final String version;
+  final String phoneNo;
   const ProfilePage({
     super.key,
     required this.username,
     required this.email,
     required this.version,
+    required this.phoneNo,
   });
 
   @override
@@ -23,6 +25,9 @@ class ProfilePage extends StatelessWidget {
         Text(
           email,
           style: const TextStyle(fontSize: 16),
+        ),
+        Text(
+          phoneNo,
         ),
         const Spacer(),
         const Divider(),

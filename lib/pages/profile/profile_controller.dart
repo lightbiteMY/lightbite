@@ -20,6 +20,7 @@ class _ProfileControllerState extends State<ProfileController> {
       username: "John Doe",
       email: "johndoe@abc.com",
       version: "1.1.0",
+      phoneNo: "012-XXX6789",
     );
   }
 }
