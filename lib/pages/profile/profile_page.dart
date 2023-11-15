@@ -15,8 +15,16 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(username),
-        Text(email),
+        const Spacer(),
+        Text(
+          username,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          email,
+          style: const TextStyle(fontSize: 16),
+        ),
+        const Spacer(),
         const Divider(),
         SizedBox(
           width: double.infinity,
