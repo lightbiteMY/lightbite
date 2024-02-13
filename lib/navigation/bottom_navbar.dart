@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lightbite/models/notification_model.dart';
 import 'package:lightbite/pages/home/home_controller.dart';
 import 'package:lightbite/pages/notification/notification_controller.dart';
+import 'package:lightbite/pages/profile/profile_controller.dart';
 import 'package:lightbite/providers/favourite_place_list_provider.dart';
 import 'package:lightbite/providers/notification_list_provider.dart';
 import 'package:lightbite/providers/restaurant_list_provider.dart';
@@ -77,7 +78,7 @@ class BottomNavBarState extends State<BottomNavBar> {
           child: const HomeController(),
         ),
         const NotificationController(),
-        const Placeholder(),
+        const ProfileController(),
       ][currentPageIndex],
     );
   }
